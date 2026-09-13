@@ -12,74 +12,85 @@ import {
 } from "react-native";
 import styles from "../../styles/homeStyles";
 
-const recentImages: ImageSourcePropType[] = [
-  require("../../assets/images/img1.jpg"),
-  require("../../assets/images/img2.jpg"),
-  require("../../assets/images/img3.jpg"),
-  require("../../assets/images/img4.jpg"),
-  require("../../assets/images/img5.jpg"),
-  require("../../assets/images/img6.jpg"),
-];
-
 type GalleryCategory = {
   name: string;
   cover: ImageSourcePropType;
   images: ImageSourcePropType[];
 };
 
-// NOTE: agrupación temporal con las imágenes que ya tenemos.
-// Cuando lleguen las fotos reales, solo se actualizan estos arrays.
-// (Las portadas usan las imágenes más ligeras para que el carrusel no parpadee.)
+// Fotos reales de proyectos CALLI, clasificadas por categoría.
 const galleryCategories: GalleryCategory[] = [
   {
     name: "Construcción",
-    cover: require("../../assets/images/Construccion.jpg"),
+    cover: require("../../assets/images/galeria/construccion-02.jpg"),
     images: [
-      require("../../assets/images/Servicio1.jpg"),
-      require("../../assets/images/Servicio7.jpg"),
-      require("../../assets/images/Servicio3.jpg"),
-      require("../../assets/images/Servicio9.jpg"),
-      require("../../assets/images/Servicio11.jpg"),
-      require("../../assets/images/img2.jpg"),
+      require("../../assets/images/galeria/construccion-01.jpg"),
+      require("../../assets/images/galeria/construccion-02.jpg"),
+      require("../../assets/images/galeria/construccion-03.jpg"),
+      require("../../assets/images/galeria/construccion-04.jpg"),
+      require("../../assets/images/galeria/construccion-05.jpg"),
+      require("../../assets/images/galeria/construccion-06.jpg"),
+      require("../../assets/images/galeria/construccion-07.jpg"),
+      require("../../assets/images/galeria/construccion-08.jpg"),
+      require("../../assets/images/galeria/construccion-09.jpg"),
+      require("../../assets/images/galeria/construccion-10.jpg"),
+      require("../../assets/images/galeria/construccion-11.jpg"),
+      require("../../assets/images/galeria/construccion-12.jpg"),
     ],
   },
   {
     name: "Remodelación",
-    cover: require("../../assets/images/Remodelacion.jpg"),
+    cover: require("../../assets/images/galeria/remodelacion-03.jpg"),
     images: [
-      require("../../assets/images/Servicio4.jpg"),
-      require("../../assets/images/Servicio10.jpg"),
-      require("../../assets/images/Servicio5.jpg"),
-      require("../../assets/images/Servicio14.jpg"),
-      require("../../assets/images/img1.jpg"),
-      require("../../assets/images/img6.jpg"),
+      require("../../assets/images/galeria/remodelacion-01.jpg"),
+      require("../../assets/images/galeria/remodelacion-02.jpg"),
+      require("../../assets/images/galeria/remodelacion-03.jpg"),
+      require("../../assets/images/galeria/remodelacion-04.jpg"),
+      require("../../assets/images/galeria/remodelacion-05.jpg"),
+      require("../../assets/images/galeria/remodelacion-06.jpg"),
+      require("../../assets/images/galeria/remodelacion-07.jpg"),
     ],
   },
   {
     name: "Mantenimiento",
-    cover: require("../../assets/images/Mantenimiento.jpg"),
+    cover: require("../../assets/images/galeria/mantenimiento-01.jpg"),
     images: [
-      require("../../assets/images/Servicio14.jpg"),
-      require("../../assets/images/Servicio12.jpg"),
-      require("../../assets/images/Servicio13.jpg"),
-      require("../../assets/images/Servicio11.jpg"),
-      require("../../assets/images/Servicio6.jpg"),
-      require("../../assets/images/img3.jpg"),
+      require("../../assets/images/galeria/mantenimiento-01.jpg"),
+      require("../../assets/images/galeria/mantenimiento-02.jpg"),
+      require("../../assets/images/galeria/mantenimiento-03.jpg"),
+      require("../../assets/images/galeria/mantenimiento-04.jpg"),
+      require("../../assets/images/galeria/mantenimiento-05.jpg"),
+      require("../../assets/images/galeria/mantenimiento-06.jpg"),
+      require("../../assets/images/galeria/mantenimiento-07.jpg"),
     ],
   },
   {
     name: "Finalizados",
-    cover: require("../../assets/images/Finalizados.jpg"),
+    cover: require("../../assets/images/galeria/finalizados-10.jpg"),
     images: [
-      require("../../assets/images/Servicio5.jpg"),
-      require("../../assets/images/Servicio9.jpg"),
-      require("../../assets/images/img5.jpg"),
-      require("../../assets/images/img6.jpg"),
-      require("../../assets/images/img4.jpg"),
-      require("../../assets/images/Servicio10.jpg"),
+      require("../../assets/images/galeria/finalizados-01.jpg"),
+      require("../../assets/images/galeria/finalizados-02.jpg"),
+      require("../../assets/images/galeria/finalizados-03.jpg"),
+      require("../../assets/images/galeria/finalizados-04.jpg"),
+      require("../../assets/images/galeria/finalizados-05.jpg"),
+      require("../../assets/images/galeria/finalizados-06.jpg"),
+      require("../../assets/images/galeria/finalizados-07.jpg"),
+      require("../../assets/images/galeria/finalizados-08.jpg"),
+      require("../../assets/images/galeria/finalizados-09.jpg"),
+      require("../../assets/images/galeria/finalizados-10.jpg"),
+      require("../../assets/images/galeria/finalizados-11.jpg"),
+      require("../../assets/images/galeria/finalizados-12.jpg"),
+      require("../../assets/images/galeria/finalizados-13.jpg"),
+      require("../../assets/images/galeria/finalizados-14.jpg"),
+      require("../../assets/images/galeria/finalizados-15.jpg"),
     ],
   },
 ];
+
+// "Recientes" muestra todas las fotos, mezclando las 4 categorías.
+const recentImages: ImageSourcePropType[] = galleryCategories.flatMap(
+  (category) => category.images,
+);
 
 export default function GaleriaScreen() {
   const [selectedImage, setSelectedImage] =
