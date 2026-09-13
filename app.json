@@ -2,6 +2,7 @@
   "expo": {
     "name": "CALLI",
     "slug": "calli-mobile",
+    "owner": "codgoli",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -45,6 +46,18 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4a27f46e-53a7-495a-9fe6-2ce6968feaf8"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4a27f46e-53a7-495a-9fe6-2ce6968feaf8"
     }
   }
 }
