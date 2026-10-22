@@ -44,6 +44,8 @@ Las pruebas se realizarán una por una. Cada resultado funcional lo confirmará 
 | U01 | Trabaja: acceso a campos y botón con el teclado abierto | Aprobada por el usuario después de la corrección | Confirmó que puede ver y alcanzar el botón con el teclado abierto y que el texto se conserva al cerrarlo. Falta repetir en release instalada. |
 | U02 | Trabaja: primer toque en Enviar Postulación con teclado abierto | Respuesta al primer toque confirmada por el usuario | Confirmó que al primer toque aparece el aviso para completar Teléfono. No confirmó expresamente ausencia de apertura de WhatsApp. |
 | U03 | Trabaja: formulario con tamaño de texto aumentado | Aprobada por el usuario | Confirmó que todo sigue legible y que el botón es accesible con la fuente aumentada. |
+| E1-01 a E1-17 | Etapa 1: formulario, elementos ocultos, consentimiento y contacto | Aprobadas por el usuario en Expo Go | Ver la sección «Etapa 1 — Pruebas manuales en Expo Go». |
+| E1-18 | Etapa 1: aviso cuando no se puede abrir el marcador | No ejecutada | Sin dispositivo para reproducir el fallo. Relacionada con C09b, que sigue pendiente. |
 
 ## Primera prueba: C01
 
@@ -451,3 +453,47 @@ El usuario confirmó que con el tamaño de texto aumentado todo se ve legible y 
 ### Estado de la ronda APK
 
 APK-01 a APK-07 aprobadas según las comprobaciones realizadas por el usuario. Para cerrar el registro del dispositivo todavía conviene anotar modelo y versión de Android.
+
+## Etapa 1 — Pruebas manuales en Expo Go
+
+Fecha de registro: 22 de octubre de 2026.
+
+Rama: `etapa1/ajustes-funcionales`, commits `0f45eb5` (ciudad o municipio y oficio), `175680a` (redes sociales y video ocultos), `a97b802` (consentimiento y aviso de privacidad) y `16d8f10` (avisos al fallar la apertura de llamadas, WhatsApp o enlaces).
+
+Modalidad: Expo Go en un teléfono Android real, con el número de pruebas. Modelo del teléfono y versión de Android pendientes de informar. Los resultados son los confirmados por el usuario; las verificaciones de TypeScript y ESLint no cuentan como pruebas en dispositivo.
+
+La ronda APK-01 a APK-07 se hizo con un APK del 17/09/2026, anterior a estos cambios, por lo que no los cubre.
+
+| ID | Prueba | Estado |
+|---|---|---|
+| E1-01 | Trabaja: orden de campos (Nombre, Ciudad o municipio, Teléfono, Oficio, Mensaje) y ausencia de Dirección | Aprobada por el usuario |
+| E1-02 | Trabaja: aviso con solo Oficio vacío; no abre WhatsApp | Aprobada por el usuario |
+| E1-03 | Trabaja: aviso con Ciudad y Oficio vacíos | Aprobada por el usuario |
+| E1-04 | Trabaja: Oficio, casillas y botón alcanzables con el teclado abierto | Aprobada por el usuario |
+| E1-05 | Inicio: sin recuadro de video ni hueco en «¿Quiénes somos?» | Aprobada por el usuario |
+| E1-06 | Inicio: Acciones Rápidas con dos tarjetas y sin «Visita nuestras redes» | Aprobada por el usuario |
+| E1-07 | Inicio: las dos tarjetas navegan a Contáctanos y Galería | Aprobada por el usuario |
+| E1-08 | Contáctanos: sin sección «Nuestras redes» | Aprobada por el usuario |
+| E1-09 | Trabaja: recuadro «Cómo usamos tus datos» con WhatsApp, seis meses, derechos ARCO y correo | Aprobada por el usuario |
+| E1-10 | Trabaja: sin casilla obligatoria aparece «Falta tu autorización»; no abre WhatsApp | Aprobada por el usuario |
+| E1-11 | Trabaja: las casillas se marcan y desmarcan desde el cuadro y desde el texto | Aprobada por el usuario |
+| E1-12 | Trabaja: mensaje con los cinco campos y «Acepta contacto por oportunidades futuras: No» | Aprobada por el usuario |
+| E1-13 | Trabaja: datos conservados al regresar; con la opcional marcada el mensaje indica «Sí» | Aprobada por el usuario |
+| E1-14 | Inicio: Llamar y WhatsApp | Aprobada por el usuario |
+| E1-15 | Inicio: WhatsApp desde una tarjeta de servicio incluye el servicio | Aprobada por el usuario |
+| E1-16 | Servicios: búsqueda «plomería», WhatsApp y Llamar desde la tarjeta | Aprobada por el usuario |
+| E1-17 | Contáctanos: Llamar y WhatsApp | Aprobada por el usuario |
+| E1-18 | Aviso «No se pudo abrir el marcador» en un dispositivo sin llamadas | **No ejecutada** |
+
+Resumen: 18 casos; 17 aprobados, 0 fallidos y 1 no ejecutado.
+
+### E1-18 — no ejecutada
+
+No se contó con un dispositivo donde se pudiera reproducir el fallo del marcador, como una tablet sin línea o un teléfono sin SIM. No se registra como aprobada ni como fallida. El aviso solo está verificado por revisión de código; su comportamiento en un dispositivo real sigue pendiente, igual que C09b.
+
+### Pendientes después de esta ronda
+
+- E1-18 y C09b: fallos al abrir aplicaciones externas.
+- Repetir los flujos de la Etapa 1 en una compilación de distribución (APK o AAB) generada con estos commits; Expo Go no la sustituye.
+- C10: redes sociales, cuando existan enlaces reales.
+- Modelo del teléfono y versión de Android usados en las pruebas.
