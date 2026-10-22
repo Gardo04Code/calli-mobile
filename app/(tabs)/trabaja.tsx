@@ -19,15 +19,17 @@ import styles from "../../styles/homeStyles";
 
 export default function TrabajaScreen() {
   const [nombre, setNombre] = useState("");
-  const [direccion, setDireccion] = useState("");
+  const [ciudad, setCiudad] = useState("");
   const [telefono, setTelefono] = useState("");
+  const [oficio, setOficio] = useState("");
   const [mensaje, setMensaje] = useState("");
 
   const handleSubmit = () => {
     const camposPendientes = [
       { etiqueta: "Nombre", valor: nombre },
-      { etiqueta: "Dirección", valor: direccion },
+      { etiqueta: "Ciudad o municipio", valor: ciudad },
       { etiqueta: "Teléfono", valor: telefono },
+      { etiqueta: "Oficio o trabajo", valor: oficio },
       { etiqueta: "Mensaje", valor: mensaje },
     ]
       .filter((campo) => !campo.valor.trim())
@@ -51,8 +53,9 @@ export default function TrabajaScreen() {
     const texto =
       "*Nueva postulación - CALLI*\n\n" +
       `*Nombre:* ${nombre.trim()}\n` +
-      `*Dirección:* ${direccion.trim()}\n` +
-      `*Teléfono:* ${telefono.trim()}\n\n` +
+      `*Ciudad o municipio:* ${ciudad.trim()}\n` +
+      `*Teléfono:* ${telefono.trim()}\n` +
+      `*Oficio o trabajo:* ${oficio.trim()}\n\n` +
       `*Mensaje:*\n${mensaje.trim()}`;
 
     Linking.openURL(
@@ -127,7 +130,7 @@ export default function TrabajaScreen() {
             </View>
           </View>
 
-          {/* INPUT DIRECCIÓN */}
+          {/* INPUT CIUDAD O MUNICIPIO */}
           <View style={styles.inputContainer}>
             <Ionicons
               name="location-outline"
@@ -137,14 +140,14 @@ export default function TrabajaScreen() {
             />
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.inputLabel}>Dirección</Text>
+              <Text style={styles.inputLabel}>Ciudad o municipio</Text>
 
               <TextInput
-                placeholder="Escribe tu dirección"
+                placeholder="Escribe tu ciudad o municipio"
                 placeholderTextColor="#888"
                 style={styles.input}
-                value={direccion}
-                onChangeText={setDireccion}
+                value={ciudad}
+                onChangeText={setCiudad}
               />
             </View>
           </View>
@@ -168,6 +171,30 @@ export default function TrabajaScreen() {
                 style={styles.input}
                 value={telefono}
                 onChangeText={setTelefono}
+              />
+            </View>
+          </View>
+
+          {/* INPUT OFICIO */}
+          <View style={styles.inputContainer}>
+            <Ionicons
+              name="hammer-outline"
+              size={24}
+              color="#444"
+              style={styles.inputIcon}
+            />
+
+            <View style={{ flex: 1 }}>
+              <Text style={styles.inputLabel}>
+                ¿Qué oficio o trabajo realizas?
+              </Text>
+
+              <TextInput
+                placeholder="Por ejemplo: albañil, plomero, electricista"
+                placeholderTextColor="#888"
+                style={styles.input}
+                value={oficio}
+                onChangeText={setOficio}
               />
             </View>
           </View>
