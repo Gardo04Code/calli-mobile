@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 
+import PrivacyPolicyLink from "../../components/PrivacyPolicyLink";
 import { ACTIVE_SOCIAL_LINKS } from "../../constants/contact";
 import { SHOW_PRESENTATION_VIDEO } from "../../constants/features";
 import styles from "../../styles/homeStyles";
@@ -331,12 +332,7 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        <View style={styles.privacyNotice}>
-          <Ionicons name="shield-checkmark-outline" size={18} color="#0A1F44" />
-          <Text style={styles.privacyNoticeText}>
-            Política de privacidad (URL pendiente)
-          </Text>
-        </View>
+        <PrivacyPolicyLink />
       </ScrollView>
 
       {/* POPUP REDES SOCIALES */}

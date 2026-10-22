@@ -9,6 +9,10 @@ export const JOBS_PHONE_NUMBER = "+522312932571";
 export const CUSTOMER_WHATSAPP_NUMBER = CUSTOMER_PHONE_NUMBER.slice(1);
 export const JOBS_WHATSAPP_NUMBER = JOBS_PHONE_NUMBER.slice(1);
 
+// Política de privacidad publicada en Google Sites.
+export const PRIVACY_POLICY_URL =
+  "https://sites.google.com/view/calli-politica-de-privacidad";
+
 // Correo para solicitudes de privacidad y derechos ARCO.
 export const PRIVACY_EMAIL = "pascualortizra3@gmail.com";
 

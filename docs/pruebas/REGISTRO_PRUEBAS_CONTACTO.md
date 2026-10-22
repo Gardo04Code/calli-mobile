@@ -47,6 +47,8 @@ Las pruebas se realizarán una por una. Cada resultado funcional lo confirmará 
 | E1-01 a E1-17 | Etapa 1: formulario, elementos ocultos, consentimiento y contacto | Aprobadas por el usuario en Expo Go | Ver la sección «Etapa 1 — Pruebas manuales en Expo Go». |
 | E1-18 | Etapa 1: aviso cuando no se puede abrir el marcador | No ejecutada | Sin dispositivo para reproducir el fallo. Relacionada con C09b, que sigue pendiente. |
 | T-01 a T-08 | Teléfonos oficiales: clientes y postulaciones | Aprobadas por el usuario en Expo Go | Ver la sección «Teléfonos oficiales — Pruebas manuales en Expo Go». |
+| P-01 a P-03 | Enlace a la política de privacidad en Inicio, Contáctanos y Trabaja | Apertura aprobada por el usuario en Expo Go | Ver la sección «Política de privacidad — Pruebas manuales en Expo Go». En P-03 falta confirmar que el formulario conserva los datos. |
+| P-04 | Enlace subrayado y sin «URL pendiente» en las tres pantallas | Pendiente de confirmación | No se informó la comprobación visual. |
 
 ## Primera prueba: C01
 
@@ -526,3 +528,28 @@ Modalidad: Expo Go en un teléfono Android real, con los números oficiales. Mod
 Resumen: 8 casos; 8 aprobados, 0 fallidos y 0 no ejecutados.
 
 Pendientes: repetir estos flujos en una compilación de distribución, junto con los de la Etapa 1, y ejecutar E1-18 y C09b cuando haya un dispositivo adecuado.
+
+## Política de privacidad — Pruebas manuales en Expo Go
+
+Fecha de ejecución: 22 de octubre de 2026.
+
+Entorno: Expo Go en un dispositivo físico. Modelo del teléfono y versión de Android pendientes de informar. Resultados confirmados por el usuario.
+
+Cambio probado: el aviso «Política de privacidad (URL pendiente)» de Inicio, Contáctanos y Trabaja con nosotros se sustituyó por un enlace (`components/PrivacyPolicyLink.tsx`) a la política publicada:
+
+https://sites.google.com/view/calli-politica-de-privacidad
+
+| ID | Prueba | Estado |
+|---|---|---|
+| P-01 | Inicio: el enlace abre la política de privacidad publicada | Aprobada por el usuario |
+| P-02 | Contáctanos: el enlace abre la política de privacidad publicada | Aprobada por el usuario |
+| P-03 | Trabaja con nosotros: el enlace abre la política de privacidad publicada | Aprobada por el usuario en cuanto a la apertura del enlace |
+| P-04 | Las tres pantallas muestran «Política de privacidad» subrayado y sin «URL pendiente» | Pendiente de confirmación |
+
+Resumen: 4 casos; 3 aprobados (P-03 de forma parcial), 0 fallidos y 1 pendiente de confirmación.
+
+### Verificaciones pendientes
+
+- P-03: confirmar que, al regresar desde el navegador, el formulario conserva los valores escritos.
+- P-04: confirmar visualmente el subrayado y la ausencia de «URL pendiente» en las tres pantallas.
+- Repetir P-01 a P-04 en una compilación de distribución, junto con los flujos de la Etapa 1 y de los teléfonos oficiales.

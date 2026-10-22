@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import PrivacyPolicyLink from "../../components/PrivacyPolicyLink";
 import { ACTIVE_SOCIAL_LINKS } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 import {
@@ -78,12 +79,7 @@ export default function ContactanosScreen() {
           </View>
         </View>
 
-        <View style={styles.privacyNotice}>
-          <Ionicons name="shield-checkmark-outline" size={18} color="#0A1F44" />
-          <Text style={styles.privacyNoticeText}>
-            Política de privacidad (URL pendiente)
-          </Text>
-        </View>
+        <PrivacyPolicyLink />
 
         {/* REDES: solo las que tienen enlace real (constants/contact.ts) */}
         {ACTIVE_SOCIAL_LINKS.length > 0 && (

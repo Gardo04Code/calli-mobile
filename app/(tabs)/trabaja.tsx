@@ -14,6 +14,7 @@ import {
   View,
 } from "react-native";
 
+import PrivacyPolicyLink from "../../components/PrivacyPolicyLink";
 import { PRIVACY_EMAIL } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 import { openJobApplicationWhatsApp } from "../../utils/linking";
@@ -310,12 +311,7 @@ export default function TrabajaScreen() {
             <Text style={styles.submitButtonText}>Enviar Postulación</Text>
           </TouchableOpacity>
 
-          <View style={styles.privacyNotice}>
-            <Ionicons name="shield-checkmark-outline" size={18} color="#0A1F44" />
-            <Text style={styles.privacyNoticeText}>
-              Política de privacidad (URL pendiente)
-            </Text>
-          </View>
+          <PrivacyPolicyLink />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
