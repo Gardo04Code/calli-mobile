@@ -46,6 +46,7 @@ Las pruebas se realizarán una por una. Cada resultado funcional lo confirmará 
 | U03 | Trabaja: formulario con tamaño de texto aumentado | Aprobada por el usuario | Confirmó que todo sigue legible y que el botón es accesible con la fuente aumentada. |
 | E1-01 a E1-17 | Etapa 1: formulario, elementos ocultos, consentimiento y contacto | Aprobadas por el usuario en Expo Go | Ver la sección «Etapa 1 — Pruebas manuales en Expo Go». |
 | E1-18 | Etapa 1: aviso cuando no se puede abrir el marcador | No ejecutada | Sin dispositivo para reproducir el fallo. Relacionada con C09b, que sigue pendiente. |
+| T-01 a T-08 | Teléfonos oficiales: clientes y postulaciones | Aprobadas por el usuario en Expo Go | Ver la sección «Teléfonos oficiales — Pruebas manuales en Expo Go». |
 
 ## Primera prueba: C01
 
@@ -497,3 +498,31 @@ No se contó con un dispositivo donde se pudiera reproducir el fallo del marcado
 - Repetir los flujos de la Etapa 1 en una compilación de distribución (APK o AAB) generada con estos commits; Expo Go no la sustituye.
 - C10: redes sociales, cuando existan enlaces reales.
 - Modelo del teléfono y versión de Android usados en las pruebas.
+
+## Teléfonos oficiales — Pruebas manuales en Expo Go
+
+Fecha de registro: 22 de octubre de 2026.
+
+Rama: `etapa1/ajustes-funcionales`. Cambio probado: el número de pruebas (+52 231 226 2218) se sustituyó por los dos números oficiales, definidos en `constants/contact.ts`:
+
+- Atención a clientes: **+52 231 124 2221**, para llamadas y WhatsApp de Inicio, tarjetas de servicio, Servicios y Contáctanos.
+- Postulaciones: **+52 231 293 2571**, solo para recibir por WhatsApp el formulario «Trabaja con nosotros». No se muestra como teléfono de atención a clientes.
+
+A partir de este cambio, la configuración temporal descrita al inicio de este registro ya no aplica a los flujos activos. Las pruebas anteriores se conservan como historial.
+
+Modalidad: Expo Go en un teléfono Android real, con los números oficiales. Modelo del teléfono y versión de Android pendientes de informar. Resultados confirmados por el usuario.
+
+| ID | Prueba | Destino esperado | Estado |
+|---|---|---|---|
+| T-01 | Inicio: Llamar | 231 124 2221 | Aprobada por el usuario |
+| T-02 | Inicio: WhatsApp con el mensaje general | 231 124 2221 | Aprobada por el usuario |
+| T-03 | Inicio: tarjeta Construcción, WhatsApp con el servicio en el mensaje | 231 124 2221 | Aprobada por el usuario |
+| T-04 | Inicio: tarjeta de servicio, Llamar | 231 124 2221 | Aprobada por el usuario |
+| T-05 | Servicios: búsqueda «plomería», Llamar y WhatsApp con el servicio | 231 124 2221 | Aprobada por el usuario |
+| T-06 | Contáctanos: Llamar y WhatsApp | 231 124 2221 | Aprobada por el usuario |
+| T-07 | Trabaja: postulación completa con los cinco campos y la línea de oportunidades futuras | 231 293 2571, nunca 231 124 2221 | Aprobada por el usuario |
+| T-08 | Trabaja: sin la casilla obligatoria aparece «Falta tu autorización» y no se abre WhatsApp | — | Aprobada por el usuario |
+
+Resumen: 8 casos; 8 aprobados, 0 fallidos y 0 no ejecutados.
+
+Pendientes: repetir estos flujos en una compilación de distribución, junto con los de la Etapa 1, y ejecutar E1-18 y C09b cuando haya un dispositivo adecuado.

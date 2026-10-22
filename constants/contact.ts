@@ -1,8 +1,13 @@
-// Número temporal de pruebas. Restaurar +522311242221 antes de publicar.
-export const PHONE_NUMBER = "+522312262218";
+// Atención a clientes: llamadas y WhatsApp para servicios e información.
+export const CUSTOMER_PHONE_NUMBER = "+522311242221";
+
+// Postulaciones de «Trabaja con nosotros». Solo recibe WhatsApp; no se
+// muestra como teléfono de atención a clientes.
+export const JOBS_PHONE_NUMBER = "+522312932571";
 
 // Los enlaces wa.me requieren el número internacional sin el signo +.
-export const WHATSAPP_NUMBER = PHONE_NUMBER.slice(1);
+export const CUSTOMER_WHATSAPP_NUMBER = CUSTOMER_PHONE_NUMBER.slice(1);
+export const JOBS_WHATSAPP_NUMBER = JOBS_PHONE_NUMBER.slice(1);
 
 // Correo para solicitudes de privacidad y derechos ARCO.
 export const PRIVACY_EMAIL = "pascualortizra3@gmail.com";

@@ -16,7 +16,7 @@ import {
 
 import { PRIVACY_EMAIL } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
-import { openWhatsApp } from "../../utils/linking";
+import { openJobApplicationWhatsApp } from "../../utils/linking";
 
 export default function TrabajaScreen() {
   const [nombre, setNombre] = useState("");
@@ -70,7 +70,7 @@ export default function TrabajaScreen() {
       `*Mensaje:*\n${mensaje.trim()}\n\n` +
       `*Acepta contacto por oportunidades futuras:* ${oportunidadesFuturas ? "Sí" : "No"}`;
 
-    openWhatsApp(texto);
+    openJobApplicationWhatsApp(texto);
   };
 
   return (
