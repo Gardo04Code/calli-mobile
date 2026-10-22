@@ -13,6 +13,7 @@ import {
   View,
 } from "react-native";
 
+import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 
 type Category =
@@ -140,7 +141,7 @@ const services: Service[] = [
     id: 8,
     title: "Croquis para escrituración",
     description: "Elaboración de croquis requeridos para trámites legales.",
-    category: "Legales",
+    category: "Diseño",
     image: require("../../assets/images/Servicio8.jpg"),
   },
   {
@@ -154,7 +155,7 @@ const services: Service[] = [
     id: 10,
     title: "Levantamiento topográfico",
     description: "Medición y levantamiento de terrenos para proyectos.",
-    category: "Legales",
+    category: "Diseño",
     image: require("../../assets/images/Servicio6.jpg"),
   },
   {
@@ -228,6 +229,70 @@ const services: Service[] = [
     category: "Mantenimiento",
     image: require("../../assets/images/Servicio20.jpg"),
   },
+  {
+    id: 21,
+    title: "Regularización de predios",
+    description:
+      "Trámites para regularizar la situación legal de un predio ante las autoridades correspondientes.",
+    category: "Legales",
+    image: require("../../assets/images/Legal1.jpg"),
+  },
+  {
+    id: 22,
+    title: "Trámites de escrituración",
+    description: "Gestionamos la escrituración de tu propiedad de principio a fin.",
+    category: "Legales",
+    image: require("../../assets/images/Legal2.jpg"),
+  },
+  {
+    id: 23,
+    title: "Contratos de obras y permisos de construcción",
+    description:
+      "Elaboración de contratos de obra y gestión de permisos de construcción.",
+    category: "Legales",
+    image: require("../../assets/images/Legal3.jpg"),
+  },
+  {
+    id: 24,
+    title: "Licitaciones y obra pública",
+    description:
+      "Asesoría legal en procesos de licitación y contratos de obra pública.",
+    category: "Legales",
+    image: require("../../assets/images/Legal4.jpg"),
+  },
+  {
+    id: 25,
+    title: "Litigio y resolución de conflictos",
+    description:
+      "Representación legal y solución de conflictos relacionados con bienes inmuebles.",
+    category: "Legales",
+    image: require("../../assets/images/Legal5.jpg"),
+  },
+  {
+    id: 26,
+    title: "Regularización de propiedad y posesión",
+    description:
+      "Trámites para acreditar la propiedad y posesión legal de un inmueble.",
+    category: "Legales",
+    image: require("../../assets/images/Legal6.jpg"),
+  },
+  {
+    id: 27,
+    title: "Constitución de hipotecas, gravámenes y limitaciones de dominio",
+    description:
+      "Constitución y registro de hipotecas, gravámenes y limitaciones sobre inmuebles.",
+    category: "Legales",
+    image: require("../../assets/images/Legal7.jpg"),
+  },
+  {
+    id: 28,
+    title:
+      "Compraventa, promesa de venta, reserva de derechos y contratos preliminares",
+    description:
+      "Elaboración de contratos de compraventa, promesa de venta y reserva de derechos.",
+    category: "Legales",
+    image: require("../../assets/images/Legal8.jpg"),
+  },
 ];
 
 export default function ServiciosScreen() {
@@ -235,9 +300,6 @@ export default function ServiciosScreen() {
   const [searchText, setSearchText] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [contactService, setContactService] = useState<string | null>(null);
-
-  const PHONE_NUMBER = "+529991234567";
-  const WHATSAPP_NUMBER = "529991234567";
 
   const filteredServices = services.filter((service) => {
     const matchesCategory =

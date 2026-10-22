@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
 
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: "rgba(0,0,0,0.28)",
   },
 
@@ -1073,6 +1073,23 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#444",
     lineHeight: 24,
+  },
+
+  privacyNotice: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    marginTop: 12,
+    marginBottom: 18,
+  },
+
+  privacyNoticeText: {
+    color: "#0A1F44",
+    fontSize: 14,
+    textAlign: "center",
+    marginLeft: 8,
   },
 
   submitButton: {

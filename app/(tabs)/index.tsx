@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 
+import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 
 type HomeService = {
@@ -112,9 +113,6 @@ const HOME_SERVICES: HomeService[] = [
 export default function HomeScreen() {
   const [socialModalVisible, setSocialModalVisible] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
-
-  const PHONE_NUMBER = "+529991234567";
-  const WHATSAPP_NUMBER = "529991234567";
 
   const closeSocialModal = () => {
     setSocialModalVisible(false);
@@ -316,6 +314,13 @@ export default function HomeScreen() {
               <Text style={styles.cardText}>Visita nuestras redes</Text>
             </TouchableOpacity>
           </View>
+        </View>
+
+        <View style={styles.privacyNotice}>
+          <Ionicons name="shield-checkmark-outline" size={18} color="#0A1F44" />
+          <Text style={styles.privacyNoticeText}>
+            Política de privacidad (URL pendiente)
+          </Text>
         </View>
       </ScrollView>
 

@@ -7,12 +7,10 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 
 export default function ContactanosScreen() {
-  const PHONE_NUMBER = "+529991234567";
-  const WHATSAPP_NUMBER = "529991234567";
-
   const handleCall = () => {
     Linking.openURL(`tel:${PHONE_NUMBER}`);
   };
@@ -76,6 +74,13 @@ export default function ContactanosScreen() {
               <Text style={styles.contactButtonText}>WhatsApp</Text>
             </TouchableOpacity>
           </View>
+        </View>
+
+        <View style={styles.privacyNotice}>
+          <Ionicons name="shield-checkmark-outline" size={18} color="#0A1F44" />
+          <Text style={styles.privacyNoticeText}>
+            Política de privacidad (URL pendiente)
+          </Text>
         </View>
 
         <View style={styles.contactSection}>
