@@ -49,6 +49,7 @@ Las pruebas se realizarán una por una. Cada resultado funcional lo confirmará 
 | T-01 a T-08 | Teléfonos oficiales: clientes y postulaciones | Aprobadas por el usuario en Expo Go | Ver la sección «Teléfonos oficiales — Pruebas manuales en Expo Go». |
 | P-01 a P-03 | Enlace a la política de privacidad en Inicio, Contáctanos y Trabaja | Apertura aprobada por el usuario en Expo Go | Ver la sección «Política de privacidad — Pruebas manuales en Expo Go». En P-03 falta confirmar que el formulario conserva los datos. |
 | P-04 | Enlace subrayado y sin «URL pendiente» en las tres pantallas | Pendiente de confirmación | No se informó la comprobación visual. |
+| L-01 a L-07 | Nuevo servicio «Reparación de línea blanca»: visibilidad, búsqueda y contacto | Aprobadas por el usuario en Expo Go | Ver la sección «Reparación de línea blanca — Pruebas manuales en Expo Go». |
 
 ## Primera prueba: C01
 
@@ -553,3 +554,29 @@ Resumen: 4 casos; 3 aprobados (P-03 de forma parcial), 0 fallidos y 1 pendiente 
 - P-03: confirmar que, al regresar desde el navegador, el formulario conserva los valores escritos.
 - P-04: confirmar visualmente el subrayado y la ausencia de «URL pendiente» en las tres pantallas.
 - Repetir P-01 a P-04 en una compilación de distribución, junto con los flujos de la Etapa 1 y de los teléfonos oficiales.
+
+## Reparación de línea blanca — Pruebas manuales en Expo Go
+
+Fecha de ejecución: 22 de octubre de 2026.
+
+Funcionalidad: nuevo servicio «Reparación de línea blanca», solicitado por Pascual Ortiz Ramos. Incluye refrigeradores, lavadoras, secadoras, hornos de microondas, estufas, aires acondicionados y minisplits. Aparece en Inicio («Nuestros Servicios») y en Servicios, categoría Mantenimiento.
+
+Entorno: Expo Go en un dispositivo Android físico. Modelo del teléfono y versión de Android pendientes de informar.
+
+Evidencia: confirmación de ejecución manual por el usuario.
+
+Imagen: `assets/images/Servicio21.jpg`, aprobada por el propietario, incluido el texto «Recepción de línea blanca».
+
+| ID | Prueba | Estado |
+|---|---|---|
+| L-01 | Inicio: la tarjeta «Reparación de línea blanca» es visible | Aprobada por el usuario |
+| L-02 | Inicio: WhatsApp desde la tarjeta, al número de atención a clientes y con el servicio en el mensaje | Aprobada por el usuario |
+| L-03 | Inicio: llamada desde la tarjeta al número de atención a clientes | Aprobada por el usuario |
+| L-04 | Servicios: el filtro Mantenimiento muestra el servicio | Aprobada por el usuario |
+| L-05 | Servicios: la búsqueda por «minisplit» o «lavadora» encuentra el servicio | Aprobada por el usuario |
+| L-06 | Servicios: WhatsApp y llamada desde la tarjeta del servicio | Aprobada por el usuario |
+| L-07 | Los servicios anteriores se conservan y funcionan | Aprobada por el usuario |
+
+Resumen: 7 casos; 7 aprobados, 0 fallidos y 0 no ejecutados.
+
+Pendiente: repetir las pruebas principales en una compilación Android de distribución.

@@ -229,6 +229,14 @@ const services: Service[] = [
     image: require("../../assets/images/Servicio20.jpg"),
   },
   {
+    id: 29,
+    title: "Reparación de línea blanca",
+    description:
+      "Diagnóstico, mantenimiento y reparación de electrodomésticos y equipos de climatización: refrigeradores, lavadoras, secadoras, hornos de microondas, estufas, aires acondicionados y minisplits.",
+    category: "Mantenimiento",
+    image: require("../../assets/images/Servicio21.jpg"),
+  },
+  {
     id: 21,
     title: "Regularización de predios",
     description:

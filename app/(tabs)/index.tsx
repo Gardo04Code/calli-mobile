@@ -114,6 +114,10 @@ const HOME_SERVICES: HomeService[] = [
     name: "Servicios de Carpintería",
     image: require("../../assets/images/Servicio20.jpg"),
   },
+  {
+    name: "Reparación de línea blanca",
+    image: require("../../assets/images/Servicio21.jpg"),
+  },
 ];
 
 export default function HomeScreen() {
