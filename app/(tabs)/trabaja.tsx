@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Linking,
   Platform,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,7 +15,7 @@ import {
   View,
 } from "react-native";
 
-import { WHATSAPP_NUMBER } from "../../constants/contact";
+import { PRIVACY_EMAIL, WHATSAPP_NUMBER } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 
 export default function TrabajaScreen() {
@@ -23,6 +24,8 @@ export default function TrabajaScreen() {
   const [telefono, setTelefono] = useState("");
   const [oficio, setOficio] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [consentimiento, setConsentimiento] = useState(false);
+  const [oportunidadesFuturas, setOportunidadesFuturas] = useState(false);
 
   const handleSubmit = () => {
     const camposPendientes = [
@@ -50,13 +53,22 @@ export default function TrabajaScreen() {
       return;
     }
 
+    if (!consentimiento) {
+      Alert.alert(
+        "Falta tu autorización",
+        "Para enviar tu postulación, marca la casilla de autorización de uso de datos.",
+      );
+      return;
+    }
+
     const texto =
       "*Nueva postulación - CALLI*\n\n" +
       `*Nombre:* ${nombre.trim()}\n` +
       `*Ciudad o municipio:* ${ciudad.trim()}\n` +
       `*Teléfono:* ${telefono.trim()}\n` +
       `*Oficio o trabajo:* ${oficio.trim()}\n\n` +
-      `*Mensaje:*\n${mensaje.trim()}`;
+      `*Mensaje:*\n${mensaje.trim()}\n\n` +
+      `*Acepta contacto por oportunidades futuras:* ${oportunidadesFuturas ? "Sí" : "No"}`;
 
     Linking.openURL(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`,
@@ -237,14 +249,57 @@ export default function TrabajaScreen() {
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.securityTitle}>Tu información está segura</Text>
+              <Text style={styles.securityTitle}>Cómo usamos tus datos</Text>
 
               <Text style={styles.securityText}>
-                En CALLI protegemos tus datos personales y los utilizamos
-                únicamente para fines de selección.
+                Tu postulación se envía a CALLI por WhatsApp. Usamos tus datos
+                para procesos de selección actuales y, si lo autorizas, para
+                oportunidades futuras. Los conservamos hasta seis meses desde
+                el último contacto, salvo obligación legal. Puedes pedir su
+                eliminación o ejercer tus derechos ARCO por WhatsApp o en{" "}
+                {PRIVACY_EMAIL}.
               </Text>
             </View>
           </View>
+
+          {/* CONSENTIMIENTO */}
+          <Pressable
+            style={formStyles.consentRow}
+            onPress={() => setConsentimiento((actual) => !actual)}
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: consentimiento }}
+            hitSlop={6}
+          >
+            <Ionicons
+              name={consentimiento ? "checkbox" : "square-outline"}
+              size={26}
+              color="#0A1F44"
+            />
+
+            <Text style={formStyles.consentText}>
+              Autorizo a CALLI a usar mis datos para evaluar esta postulación.
+              (Obligatorio)
+            </Text>
+          </Pressable>
+
+          <Pressable
+            style={formStyles.consentRow}
+            onPress={() => setOportunidadesFuturas((actual) => !actual)}
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: oportunidadesFuturas }}
+            hitSlop={6}
+          >
+            <Ionicons
+              name={oportunidadesFuturas ? "checkbox" : "square-outline"}
+              size={26}
+              color="#0A1F44"
+            />
+
+            <Text style={formStyles.consentText}>
+              También acepto que CALLI conserve mis datos para contactarme por
+              oportunidades laborales futuras. (Opcional)
+            </Text>
+          </Pressable>
 
           {/* BOTÓN */}
           <TouchableOpacity
@@ -276,5 +331,17 @@ const formStyles = StyleSheet.create({
   content: {
     flexGrow: 1,
     paddingBottom: 24,
+  },
+  consentRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 10,
+    marginBottom: 16,
+  },
+  consentText: {
+    flex: 1,
+    fontSize: 14,
+    lineHeight: 20,
+    color: "#333",
   },
 });

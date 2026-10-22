@@ -4,6 +4,9 @@ export const PHONE_NUMBER = "+522312262218";
 // Los enlaces wa.me requieren el número internacional sin el signo +.
 export const WHATSAPP_NUMBER = PHONE_NUMBER.slice(1);
 
+// Correo para solicitudes de privacidad y derechos ARCO.
+export const PRIVACY_EMAIL = "pascualortizra3@gmail.com";
+
 export type SocialLink = {
   icon: "logo-facebook" | "logo-instagram" | "logo-tiktok";
   color: string;
