@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Image,
   ImageBackground,
-  Linking,
   Modal,
   Pressable,
   ScrollView,
@@ -14,13 +13,14 @@ import {
 } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 
-import {
-  ACTIVE_SOCIAL_LINKS,
-  PHONE_NUMBER,
-  WHATSAPP_NUMBER,
-} from "../../constants/contact";
+import { ACTIVE_SOCIAL_LINKS } from "../../constants/contact";
 import { SHOW_PRESENTATION_VIDEO } from "../../constants/features";
 import styles from "../../styles/homeStyles";
+import {
+  openExternalLink,
+  openPhoneCall,
+  openWhatsApp,
+} from "../../utils/linking";
 
 type HomeService = {
   name: string;
@@ -124,19 +124,17 @@ export default function HomeScreen() {
   };
 
   const openSocialLink = (url: string) => {
-    Linking.openURL(url).catch(() => {});
+    openExternalLink(url);
   };
 
   const handleCall = () => {
-    Linking.openURL(`tel:${PHONE_NUMBER}`);
+    openPhoneCall();
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(
+    openWhatsApp(
       "Hola, me gustaría recibir información sobre los servicios de CALLI.",
     );
-
-    Linking.openURL(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`);
   };
 
   const closeServiceContact = () => {
@@ -145,22 +143,18 @@ export default function HomeScreen() {
 
   const handleServiceCall = () => {
     setSelectedService(null);
-    Linking.openURL(`tel:${PHONE_NUMBER}`).catch(() => {});
+    openPhoneCall();
   };
 
   const handleServiceWhatsApp = () => {
     const service = selectedService;
     setSelectedService(null);
 
-    const message = encodeURIComponent(
+    openWhatsApp(
       service
         ? `Hola, me gustaría solicitar el servicio de "${service}" en CALLI. ¿Me pueden brindar atención?`
         : "Hola, me gustaría recibir información sobre los servicios de CALLI.",
     );
-
-    Linking.openURL(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
-    ).catch(() => {});
   };
 
   return (

@@ -1,34 +1,32 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
     Image,
-    Linking,
     ScrollView,
     Text,
     TouchableOpacity,
     View,
 } from "react-native";
-import {
-  ACTIVE_SOCIAL_LINKS,
-  PHONE_NUMBER,
-  WHATSAPP_NUMBER,
-} from "../../constants/contact";
+import { ACTIVE_SOCIAL_LINKS } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
+import {
+  openExternalLink,
+  openPhoneCall,
+  openWhatsApp,
+} from "../../utils/linking";
 
 export default function ContactanosScreen() {
   const handleCall = () => {
-    Linking.openURL(`tel:${PHONE_NUMBER}`);
+    openPhoneCall();
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(
+    openWhatsApp(
       "Hola, me gustaría recibir información sobre los servicios de CALLI.",
     );
-
-    Linking.openURL(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`);
   };
 
   const openSocialLink = (url: string) => {
-    Linking.openURL(url).catch(() => {});
+    openExternalLink(url);
   };
 
   return (

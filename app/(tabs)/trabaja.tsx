@@ -4,7 +4,6 @@ import {
   Alert,
   Image,
   KeyboardAvoidingView,
-  Linking,
   Platform,
   Pressable,
   ScrollView,
@@ -15,8 +14,9 @@ import {
   View,
 } from "react-native";
 
-import { PRIVACY_EMAIL, WHATSAPP_NUMBER } from "../../constants/contact";
+import { PRIVACY_EMAIL } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
+import { openWhatsApp } from "../../utils/linking";
 
 export default function TrabajaScreen() {
   const [nombre, setNombre] = useState("");
@@ -70,9 +70,7 @@ export default function TrabajaScreen() {
       `*Mensaje:*\n${mensaje.trim()}\n\n` +
       `*Acepta contacto por oportunidades futuras:* ${oportunidadesFuturas ? "Sí" : "No"}`;
 
-    Linking.openURL(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`,
-    ).catch(() => {});
+    openWhatsApp(texto);
   };
 
   return (

@@ -3,7 +3,6 @@ import { useState } from "react";
 import type { ImageSourcePropType } from "react-native";
 import {
   Image,
-  Linking,
   Modal,
   Pressable,
   ScrollView,
@@ -13,8 +12,8 @@ import {
   View,
 } from "react-native";
 
-import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
 import styles from "../../styles/homeStyles";
+import { openPhoneCall, openWhatsApp } from "../../utils/linking";
 
 type Category =
   | "Todos"
@@ -332,22 +331,18 @@ export default function ServiciosScreen() {
 
   const handleContactCall = () => {
     setContactService(null);
-    Linking.openURL(`tel:${PHONE_NUMBER}`).catch(() => {});
+    openPhoneCall();
   };
 
   const handleContactWhatsApp = () => {
     const service = contactService;
     setContactService(null);
 
-    const message = encodeURIComponent(
+    openWhatsApp(
       service
         ? `Hola, me gustaría solicitar el servicio de "${service}" en CALLI. ¿Me pueden brindar atención?`
         : "Hola, me gustaría recibir información sobre los servicios de CALLI.",
     );
-
-    Linking.openURL(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`,
-    ).catch(() => {});
   };
 
   return (
