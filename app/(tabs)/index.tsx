@@ -14,7 +14,12 @@ import {
 } from "react-native";
 import type { ImageSourcePropType } from "react-native";
 
-import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
+import {
+  ACTIVE_SOCIAL_LINKS,
+  PHONE_NUMBER,
+  WHATSAPP_NUMBER,
+} from "../../constants/contact";
+import { SHOW_PRESENTATION_VIDEO } from "../../constants/features";
 import styles from "../../styles/homeStyles";
 
 type HomeService = {
@@ -119,7 +124,7 @@ export default function HomeScreen() {
   };
 
   const openSocialLink = (url: string) => {
-    Linking.openURL(url);
+    Linking.openURL(url).catch(() => {});
   };
 
   const handleCall = () => {
@@ -180,7 +185,12 @@ export default function HomeScreen() {
           {/* SECTION */}
           <View style={styles.section}>
             {/* TEXTO */}
-            <View style={styles.textContainer}>
+            <View
+              style={[
+                styles.textContainer,
+                !SHOW_PRESENTATION_VIDEO && { marginBottom: 0 },
+              ]}
+            >
               <Text style={styles.title}>¿Quiénes somos?</Text>
 
               <Text style={styles.description}>
@@ -189,12 +199,14 @@ export default function HomeScreen() {
               </Text>
             </View>
 
-            {/* VIDEO */}
-            <View style={styles.videoContainer}>
-              <View style={styles.videoPlaceholder}>
-                <Text style={styles.videoText}>Video presentación</Text>
+            {/* VIDEO: oculto hasta tener el video (constants/features.ts) */}
+            {SHOW_PRESENTATION_VIDEO && (
+              <View style={styles.videoContainer}>
+                <View style={styles.videoPlaceholder}>
+                  <Text style={styles.videoText}>Video presentación</Text>
+                </View>
               </View>
-            </View>
+            )}
           </View>
         </View>
 
@@ -271,7 +283,14 @@ export default function HomeScreen() {
           </Text>
 
           {/* CARDS */}
-          <View style={styles.cardsContainer}>
+          <View
+            style={[
+              styles.cardsContainer,
+              ACTIVE_SOCIAL_LINKS.length === 0 && {
+                justifyContent: "space-evenly",
+              },
+            ]}
+          >
             {/* CARD 1 */}
             <TouchableOpacity
               style={styles.card}
@@ -300,19 +319,21 @@ export default function HomeScreen() {
               <Text style={styles.cardText}>Mira Nuestros Proyectos</Text>
             </TouchableOpacity>
 
-            {/* CARD 3 */}
-            <TouchableOpacity
-              style={styles.card}
-              activeOpacity={0.8}
-              onPress={() => setSocialModalVisible(true)}
-            >
-              <Image
-                source={require("../../assets/images/icon3.png")}
-                style={styles.cardIcon}
-              />
+            {/* CARD 3: solo si hay redes con enlace real */}
+            {ACTIVE_SOCIAL_LINKS.length > 0 && (
+              <TouchableOpacity
+                style={styles.card}
+                activeOpacity={0.8}
+                onPress={() => setSocialModalVisible(true)}
+              >
+                <Image
+                  source={require("../../assets/images/icon3.png")}
+                  style={styles.cardIcon}
+                />
 
-              <Text style={styles.cardText}>Visita nuestras redes</Text>
-            </TouchableOpacity>
+                <Text style={styles.cardText}>Visita nuestras redes</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
 
@@ -351,41 +372,20 @@ export default function HomeScreen() {
             </Text>
 
             <View style={styles.socialIconsContainer}>
-              <TouchableOpacity
-                style={styles.socialItem}
-                activeOpacity={0.8}
-                onPress={() => openSocialLink("https://www.facebook.com/")}
-              >
-                <View style={styles.socialIconBox}>
-                  <Ionicons name="logo-facebook" size={36} color="#1877F2" />
-                </View>
+              {ACTIVE_SOCIAL_LINKS.map((link) => (
+                <TouchableOpacity
+                  key={link.icon}
+                  style={styles.socialItem}
+                  activeOpacity={0.8}
+                  onPress={() => openSocialLink(link.url)}
+                >
+                  <View style={styles.socialIconBox}>
+                    <Ionicons name={link.icon} size={36} color={link.color} />
+                  </View>
 
-                <Text style={styles.socialName}>Calli Oficial</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.socialItem}
-                activeOpacity={0.8}
-                onPress={() => openSocialLink("https://www.instagram.com/")}
-              >
-                <View style={styles.socialIconBox}>
-                  <Ionicons name="logo-instagram" size={36} color="#C13584" />
-                </View>
-
-                <Text style={styles.socialName}>@Calli</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.socialItem}
-                activeOpacity={0.8}
-                onPress={() => openSocialLink("https://www.tiktok.com/")}
-              >
-                <View style={styles.socialIconBox}>
-                  <Ionicons name="logo-tiktok" size={36} color="#111111" />
-                </View>
-
-                <Text style={styles.socialName}>CalliProyc</Text>
-              </TouchableOpacity>
+                  <Text style={styles.socialName}>{link.name}</Text>
+                </TouchableOpacity>
+              ))}
             </View>
           </Pressable>
         </Pressable>

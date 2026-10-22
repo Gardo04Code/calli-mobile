@@ -7,7 +7,11 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { PHONE_NUMBER, WHATSAPP_NUMBER } from "../../constants/contact";
+import {
+  ACTIVE_SOCIAL_LINKS,
+  PHONE_NUMBER,
+  WHATSAPP_NUMBER,
+} from "../../constants/contact";
 import styles from "../../styles/homeStyles";
 
 export default function ContactanosScreen() {
@@ -83,52 +87,34 @@ export default function ContactanosScreen() {
           </Text>
         </View>
 
-        <View style={styles.contactSection}>
-          <Text style={styles.contactTitle}>Nuestras redes</Text>
+        {/* REDES: solo las que tienen enlace real (constants/contact.ts) */}
+        {ACTIVE_SOCIAL_LINKS.length > 0 && (
+          <View style={styles.contactSection}>
+            <Text style={styles.contactTitle}>Nuestras redes</Text>
 
-          <Text style={styles.contactDescription}>
-            Síguenos y conoce más sobre nuestros proyectos, servicios y trabajos
-            recientes.
-          </Text>
+            <Text style={styles.contactDescription}>
+              Síguenos y conoce más sobre nuestros proyectos, servicios y
+              trabajos recientes.
+            </Text>
 
-          <View style={styles.contactSocialRow}>
-            <TouchableOpacity
-              style={styles.socialItem}
-              activeOpacity={0.8}
-              onPress={() => openSocialLink("https://www.facebook.com/")}
-            >
-              <View style={styles.socialIconBox}>
-                <Ionicons name="logo-facebook" size={36} color="#1877F2" />
-              </View>
+            <View style={styles.contactSocialRow}>
+              {ACTIVE_SOCIAL_LINKS.map((link) => (
+                <TouchableOpacity
+                  key={link.icon}
+                  style={styles.socialItem}
+                  activeOpacity={0.8}
+                  onPress={() => openSocialLink(link.url)}
+                >
+                  <View style={styles.socialIconBox}>
+                    <Ionicons name={link.icon} size={36} color={link.color} />
+                  </View>
 
-              <Text style={styles.socialName}>Calli Oficial</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.socialItem}
-              activeOpacity={0.8}
-              onPress={() => openSocialLink("https://www.instagram.com/")}
-            >
-              <View style={styles.socialIconBox}>
-                <Ionicons name="logo-instagram" size={36} color="#C13584" />
-              </View>
-
-              <Text style={styles.socialName}>@Calli</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.socialItem}
-              activeOpacity={0.8}
-              onPress={() => openSocialLink("https://www.tiktok.com/")}
-            >
-              <View style={styles.socialIconBox}>
-                <Ionicons name="logo-tiktok" size={36} color="#111111" />
-              </View>
-
-              <Text style={styles.socialName}>CalliProyc</Text>
-            </TouchableOpacity>
+                  <Text style={styles.socialName}>{link.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </ScrollView>
   );
